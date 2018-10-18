@@ -7,8 +7,14 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 class MemberList extends React.Component {
-    componentWillMount() {
-        if (this.props.clan.clanId) {
+    constructor(props) {
+        super(props)
+
+        this.state = {fetched: false}
+    }
+    componentDidUpdate() {
+        if (this.props.clan.clanId && this.state.fetched === false) {
+            this.setState({fetched: true})
             this.fetchMemberList()
         }
     }

@@ -16,13 +16,13 @@ class AppHeader extends React.Component {
 
         return (
             <Segment.Group horizontal inverted>
-                <Segment textAlign="left">
+                <Segment invertedtextAlign="left">
                     Welcome, {name}
                 </Segment>
-                <Segment textAlign="center">
+                <Segment invertedtextAlign="center">
                     {clanName}
                 </Segment>
-                <Segment textAlign="right">
+                <Segment inverted textAlign="right">
                     <Button inverted color="red">
                         Log out
                     </Button>

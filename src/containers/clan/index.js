@@ -11,6 +11,12 @@ import Header from '../../components/header'
 import MemberList from '../../components/memberList'
 
 class Clan extends React.Component {
+  constructor(props) {
+    this.state = {
+      fetched: false
+    }
+  }
+
   componentWillMount() {
     const {auth} = this.props
 
@@ -18,7 +24,9 @@ class Clan extends React.Component {
       history.push('/')
     }
 
-    this.fetchUser()
+    this
+      .fetchUser()
+      .then(() => this.setState({fetched: true}))
   }
 
   async fetchUser() {
@@ -37,23 +45,33 @@ class Clan extends React.Component {
       const {
         id,
         founder,
-        details
+        detail
       } = clan
-  
-      const {name, memberCount} = details
+
+      const {name, memberCount} = detail
+
+      const results = await fetch(`/api/clan/${clanId}/member`)
+      const members = await results.json()
 
       this.props.receiveClan({clanId: id, clanName: name, founder, memberCount})
       this.props.receiveUserData({name: displayName, id: membershipId, type})
+      this.props.receiveClanMembers(members)
+
+      return Promise.resolve()
     } catch (e) {
       alert('You Dun Goofd')
     }
   }
 
   render() {
+    if (this.state.fetched === false) {
+      return null
+    }
+  
     return (
       <Container>
         <Header />
-        <Segment>
+        <Segment inverted color="grey">
           <MemberList />
           {JSON.stringify(this.props)}
         </Segment>
