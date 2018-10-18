@@ -1,15 +1,21 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
+import Landing from '../landing'
+import Success from '../success'
+import Clan from '../clan'
+import { Route } from 'react-router-dom'
 
 class App extends React.Component {
   render() {
-    <Container className="App">
-      <Container as="main">
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/success" component={Success} />
-        <Route exact path="/clan" component={fuck} />
+    return (
+      <Container className="App">
+        <Container as="main">
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/success" component={Success} />
+          <Route exact path="/clan" component={Clan} />
+        </Container>
       </Container>
-    </Container>
+    )
   }
 }
 

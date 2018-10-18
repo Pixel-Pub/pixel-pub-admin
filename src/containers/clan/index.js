@@ -1,6 +1,9 @@
 import React from 'react'
 import { Container, Segment} from 'semantic-ui-react'
-import { receiveAuthData } from '../../actions'
+import { receiveUserData,
+  receiveClan,
+  receiveClanMembers
+} from '../../actions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { history } from '../../store'
@@ -14,7 +17,7 @@ class Clan extends React.Component {
       history.push('/')
     }
 
-    await this.fetchUser()
+    this.fetchUser()
   }
 
   async fetchUser() {
@@ -44,20 +47,12 @@ class Clan extends React.Component {
   }
 
   render() {
-    <Container className="App">
-      <Segment as="header" className="App-header" basic />
-
-      <Container as="main">
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/success" component={Success} />
-        <Route exact path="/clan" component={fuck} />
-      </Container>
-    </Container>
+    return JSON.stringify(this.props)
   }
 }
 
 
-const mapStateToProps = ({ auth }) => ({
+const mapStateToProps = ({ auth, user, clan }) => ({
   auth,
   user,
   clan

@@ -1,5 +1,5 @@
 import React from 'react';
-import Sender from '../auth/sender'
+import Sender from './sender'
 import {Segment, Header, Button} from 'semantic-ui-react'
 import {history} from '../../store'
 import Loader from '../../components/loader'
