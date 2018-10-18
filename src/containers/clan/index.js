@@ -50,7 +50,7 @@ class Clan extends React.Component {
 
       const {name, memberCount} = detail
 
-      const results = await fetch(`/api/clan/${clanId}/member`)
+      const results = await fetch(`/api/clan/${id}/member`)
       const members = await results.json()
 
       this.props.receiveClan({clanId: id, clanName: name, founder, memberCount})
