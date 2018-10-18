@@ -12,6 +12,8 @@ import MemberList from '../../components/memberList'
 
 class Clan extends React.Component {
   constructor(props) {
+    super(props)
+  
     this.state = {
       fetched: false
     }
@@ -55,7 +57,7 @@ class Clan extends React.Component {
 
       this.props.receiveClan({clanId: id, clanName: name, founder, memberCount})
       this.props.receiveUserData({name: displayName, id: membershipId, type})
-      this.props.receiveClanMembers(members)
+      this.props.receiveClanMembers({members})
 
       return Promise.resolve()
     } catch (e) {

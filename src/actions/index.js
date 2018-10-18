@@ -27,7 +27,7 @@ export const receiveClan = ({clanId, clanName, founder, memberCount}) => (dispat
 
 export const receiveClanMembers = ({members}) => (dispatch) => {
   dispatch({
-    type: CONSTANTS.CLAN_RECEIVED,
+    type: CONSTANTS.CLAN_MEMBERS_RECEIVED,
     payload: {members}
   })
 }
