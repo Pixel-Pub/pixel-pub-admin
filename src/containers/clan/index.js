@@ -7,7 +7,7 @@ import { receiveUserData,
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { history } from '../../store'
-
+import Header from '../../components/header'
 
 class Clan extends React.Component {
   componentWillMount() {
@@ -35,11 +35,13 @@ class Clan extends React.Component {
   
       const {
         groupId,
-        name,
-        founder
+        founder,
+        details
       } = clan
   
-      this.props.receiveClan({clanId: groupId, clanName: name, founder}),
+      const {name, memberCount} = details
+
+      this.props.receiveClan({clanId: groupId, clanName: name, founder, memberCount})
       this.props.receiveUserData({name: displayName, id: membershipId, type})
     } catch (e) {
       alert('You Dun Goofd')
@@ -47,7 +49,14 @@ class Clan extends React.Component {
   }
 
   render() {
-    return JSON.stringify(this.props)
+    return (
+      <Container>
+        <Header />
+        <Segment>
+          {JSON.stringify(this.props)}
+        </Segment>
+      </Container>
+    )
   }
 }
 

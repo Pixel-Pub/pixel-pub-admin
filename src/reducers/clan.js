@@ -4,16 +4,18 @@ const initialState = {
   clanId:   '',
   clanName: '',
   members:  [],
+  memberCount: 0,
   founder:  {}
 }
 
 const REDUCERS = {
-  [CLAN_RECEIVED]: (state, {clanId, clanName, founder}) => {
+  [CLAN_RECEIVED]: (state, {clanId, clanName, founder, memberCount}) => {
     return {
       ...state, 
       clanId,
       clanName,
-      founder
+      founder,
+      memberCount
     }
   },
   [CLAN_MEMBERS_RECEIVED]: (state, {members}) => {

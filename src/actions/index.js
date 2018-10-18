@@ -18,10 +18,10 @@ export const receiveUserData = (data) => (dispatch) => {
   return Promise.resolve(data)
 }
 
-export const receiveClan = ({clanId, clanName, founder}) => (dispatch) => {
+export const receiveClan = ({clanId, clanName, founder, memberCount}) => (dispatch) => {
   dispatch({
     type: CONSTANTS.CLAN_RECEIVED,
-    payload: {clanId, clanName, founder}
+    payload: {clanId, clanName, founder, memberCount}
   })
 }
 
