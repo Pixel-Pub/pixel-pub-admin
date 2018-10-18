@@ -1,7 +1,7 @@
 import {CLAN_RECEIVED, CLAN_MEMBERS_RECEIVED} from '../constants'
 
 const initialState = {
-  clanId:   '',
+  clanId:   0,
   clanName: '',
   members:  [],
   memberCount: 0,

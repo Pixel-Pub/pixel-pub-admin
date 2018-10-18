@@ -1,10 +1,11 @@
 import React from 'react'
 import {Segment, Button} from 'semantic-ui-react'
-import { receiveUserData,
-    receiveClan,
-    receiveClanMembers
-} from '../../actions'
-import { bindActionCreators } from 'redux'
+// import {
+//     receiveUserData,
+//     receiveClan,
+//     receiveClanMembers
+// } from '../../actions'
+// import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 class AppHeader extends React.Component {
@@ -32,20 +33,9 @@ class AppHeader extends React.Component {
     }
 }
 
-
 const mapStateToProps = ({ user, clan }) => ({
     user,
     clan
 })
 
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-        receiveUserData,
-        receiveClan,
-        receiveClanMembers
-        },
-        dispatch
-    )
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppHeader)
+export default connect(mapStateToProps)(AppHeader)
