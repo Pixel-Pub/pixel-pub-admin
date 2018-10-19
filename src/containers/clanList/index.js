@@ -76,7 +76,7 @@ export default class ClanList extends React.Component {
             {localData.map((datum, index) => (
               <Table.Row key={index}>
                 <Table.Cell>
-                  <a href={`https://www.bungie.net/en/ClanV2?groupId=${datum.group_id}`}>{datum.name.toUpperCase()}</a>
+                  <a className="clan-link" href={`https://www.bungie.net/en/ClanV2?groupId=${datum.group_id}`}>{datum.name.toUpperCase()}</a>
                 </Table.Cell>
                 <Table.Cell>
                   {datum.region}

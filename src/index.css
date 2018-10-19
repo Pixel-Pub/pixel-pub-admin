@@ -19,6 +19,9 @@ body a {
   color: #ffffff;
 }
 
+.clan-link {
+  color: #000;
+}
 .App {
   text-align: center;
 }
