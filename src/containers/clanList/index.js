@@ -1,7 +1,7 @@
 import React from 'react'
 import ClanList from '../../components/clanlist'
 
-export default class ClanList extends React.Component {
+export default class ClanListGuest extends React.Component {
   state = {
     loading: true,
     data: [{
@@ -15,7 +15,7 @@ export default class ClanList extends React.Component {
       .then(clans => {
         this.setState({
           loading: false,
-          data: clans.map(({group_id, member_count, platform, name, last_synced}) => ({
+          data: clans.map(({group_id, member_count, platform, name}) => ({
             group_id,
             member_count,
             platform,

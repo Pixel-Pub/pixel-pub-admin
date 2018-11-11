@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import { Container, Segment, Table } from 'semantic-ui-react'
 import {history} from '../../store'
 import _ from 'lodash'
+import moment from 'moment'
 
 export default class ClanList extends React.Component {
   state = {
-    loading: true,
+    loading: false,
     column: null,
     direction: null,
     data: [{
@@ -69,10 +70,10 @@ export default class ClanList extends React.Component {
             </Table.Header>
             <Table.Body>
             {localData.map((datum, index) => (
-              <Table.Row key={index} onClick={admin ? this.handleRowClick(datum.groupId) : () => null}>
+              <Table.Row key={index} onClick={admin ? this.handleRowClick(datum.group_id) : () => null}>
                 <Table.Cell>
                   {admin === true
-                    ? datum.groupId
+                    ? datum.name.toUpperCase()
                     : <a className="clan-link" href={`https://www.bungie.net/en/ClanV2?groupId=${datum.group_id}`}>{datum.name.toUpperCase()}</a>
                   }
                 </Table.Cell>
@@ -87,7 +88,7 @@ export default class ClanList extends React.Component {
                 </Table.Cell>
                 {admin === true &&
                   <Table.Cell>
-                    {new Date(datum.last_synced).toDateString()}
+                    {new moment(datum.synced_at).format('MM/DD/YYYY')}
                   </Table.Cell>
                 }
               </Table.Row>

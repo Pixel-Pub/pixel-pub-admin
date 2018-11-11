@@ -13,7 +13,7 @@ const PlatformMap = {
 class MemberList extends React.Component {
     render() {
         const {members} = this.props
-        
+        console.log('[test]', members)
         return (
             <Segment loading={!members || members.length === 0} basic>
                 <Table>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Receiver from './receiver'
-import {Segment, Header, Button} from 'semantic-ui-react'
+import {Segment, Header} from 'semantic-ui-react'
 
 const Landing = ({processing, state, error}) => (
     <Segment textAlign="center">
