@@ -31,3 +31,9 @@ export const receiveClanMembers = ({members}) => (dispatch) => {
     payload: {members}
   })
 }
+
+export const receiveClanListMembers = ({clanId, members}) => 
+  dispatch({
+    type: CONSTANTS.CLAN_LIST_MEMBERS_LOADED,
+    payload: {clanId, members}
+  })

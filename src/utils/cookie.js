@@ -1,8 +1,8 @@
-export const getCookie = () => {
-    return !document.cookie && document.cookie.indexOf('PXPAUTH') < 0 ? {} : JSON.parse(
+export const getCookie = (key = 'PXPAUTH') => {
+    return !document.cookie && document.cookie.indexOf(key) < 0 ? {} : JSON.parse(
         document.cookie
             .split(';')
-            .filter(cookie => cookie.indexOf('PXPAUTH') >= 0)
+            .filter(cookie => cookie.indexOf(key) >= 0)
             .shift()
             .split('=')
             .slice(1)

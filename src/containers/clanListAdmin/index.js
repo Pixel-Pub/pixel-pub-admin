@@ -20,6 +20,7 @@ export default class ClanList extends React.Component {
             member_count,
             platform,
             name,
+            last_synced,
             region: name.indexOf('EU') >= 0 ? 'Europe' : 'North America'
           }))
         })
@@ -30,7 +31,7 @@ export default class ClanList extends React.Component {
     const {loading, data} = this.state
 
     return (
-      <ClanList data={data} loading={loading} />
+      <ClanList data={data} loading={loading} admin={true} />
     )
   }
 }

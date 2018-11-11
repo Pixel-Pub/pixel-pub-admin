@@ -1,80 +1,67 @@
 import React from 'react'
-import {Segment, Button, Table, TableBody, TableRow, TableHeader, TableHeaderCell, TableCell} from 'semantic-ui-react'
-import {
-    receiveClanMembers
-} from '../../actions'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {Segment, Table, TableBody, TableRow, TableHeader, TableHeaderCell, TableCell} from 'semantic-ui-react'
+
+const PlatformMap = {
+    "0": "None",
+    "1": "Xbox",
+    "2": "Playstation",
+    "4": "PC Master Race",
+    "10": "Some weird bungo thing called TigerDemon",
+    "254": "Uber 1337 Bungo Hax0r"
+}
 
 class MemberList extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {fetched: false}
-    }
-    componentDidUpdate() {
-        if (this.props.clan.clanId && this.state.fetched === false) {
-            this.setState({fetched: true})
-            this.fetchMemberList()
-        }
-    }
-
-    async fetchMemberList() {
-        const {clanId} = this.props.clan
-
-        const results = await fetch(`/api/clan/${clanId}/member`)
-        const members = await results.json()
-
-        this.props.receiveClanMembers(members)
-    }
-
     render() {
-        const {clan} = this.props
-        const {members} = clan
-
-        if (!members || members.length === 0) {
-            return null
-        }
-
-        const keys = Object.keys(members[0])
-
+        const {members} = this.props
+        
         return (
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        {keys.map((key, idx) => (
-                            <TableHeaderCell key={key+idx}>
-                                {key}
+            <Segment loading={!members || members.length === 0} basic>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHeaderCell>
+                                Member
                             </TableHeaderCell>
-                        ))}
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {members.map((member, idx) => (
-                        <TableRow key={idx}>
-                            {Object.values(member).map((value, index) => (
-                                <TableCell key={`${idx}${index}`}>
-                                    {value}
-                                </TableCell>
-                            ))}
+                            <TableHeaderCell>
+                                Destiny Id
+                            </TableHeaderCell>
+                            <TableHeaderCell>
+                                First Joined
+                            </TableHeaderCell>
+                            <TableHeaderCell>
+                                Platform
+                            </TableHeaderCell>
+                            <TableHeaderCell>
+                                Last Seen
+                            </TableHeaderCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+                    </TableHeader>
+                    <TableBody>
+                        {members.map((member, idx) => (
+                            <TableRow key={idx}>
+                                <TableCell>
+                                    {member.name}
+                                </TableCell>
+                                <TableCell>
+                                    {member.destiny_member_id}
+                                </TableCell>
+                                <TableCell>
+                                    {new Date(member.created_at).toDateString()}
+                                </TableCell>
+                                <TableCell>
+                                    {PlatformMap[member.type]}
+                                </TableCell>
+                                <TableCell>
+                                    {new Date(member.updated_at).toDateString()}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </Segment>
         )
 
     }
 }
 
-
-const mapStateToProps = ({ clan }) => ({
-    clan
-})
-
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {receiveClanMembers},
-        dispatch
-    )
-
-export default connect(mapStateToProps, mapDispatchToProps)(MemberList)
+export default MemberList
