@@ -15,12 +15,12 @@ export default class ClanListGuest extends React.Component {
       .then(clans => {
         this.setState({
           loading: false,
-          data: clans.map(({group_id, member_count, platform, name}) => ({
-            group_id,
-            member_count,
-            platform,
-            name,
-            region: name.indexOf('EU') >= 0 ? 'Europe' : 'North America'
+          data: clans.map(({GroupId, MemberCount, Region, Name, Platform}) => ({
+            group_id: GroupId,
+            member_count: MemberCount,
+            platform: Platform,
+            name: Name,
+            region: Region
           }))
         })
       })
