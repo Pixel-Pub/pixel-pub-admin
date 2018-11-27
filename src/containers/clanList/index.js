@@ -18,6 +18,7 @@ export default class ClanListGuest extends React.Component {
           data: clans
             .filter(({Name}) => {
               const name       = Name.toLowerCase()
+              const validClan  = true
               const exceptions = [
                 'bravo',
                 'alpha',
@@ -26,11 +27,11 @@ export default class ClanListGuest extends React.Component {
 
               exceptions.forEach((exception) => {
                 if (name.indexOf(exception) >= 0) {
-                  return false
+                  validClan = false
                 }
               })
 
-              return true
+              return validClan
             })
             .map(({GroupId, MemberCount, Region, Name, Platform}) => ({
               group_id: GroupId,
