@@ -18,7 +18,7 @@ export default class ClanListGuest extends React.Component {
           data: clans
             .filter(({Name}) => {
               const name       = Name.toLowerCase()
-              const validClan  = true
+              let validClan    = true
               const exceptions = [
                 'bravo',
                 'alpha',
